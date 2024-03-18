@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mini Cricket Game</title>
+  <script>
+    function playBall() {
+      var userChoice = parseInt(document.getElementById('userInput').value);
+      var computerRuns = Math.floor(Math.random() * 7); // Generates a random number from 0 to 6
+
+      if (userChoice >= 1 && userChoice <= 6) {
+        document.getElementById('result').innerHTML = "You chose to run " + userChoice + " run(s).<br>";
+        if (userChoice === computerRuns) {
+          document.getElementById('result').innerHTML += "You are out! You scored " + userScore + " run(s).";
+        } else {
+          document.getElementById('result').innerHTML += "Computer chose to run " + computerRuns + " run(s).<br>";
+          userScore += userChoice;
+          document.getElementById('result').innerHTML += "Your score: " + userScore + " run(s).";
+        }
+      } else {
+        document.getElementById('result').innerHTML = "Please enter a number between 1 and 6.";
+      }
+    }
+
+    var userScore = 0; // Track user's score
+
+    function resetGame() {
+      userScore = 0;
+      document.getElementById('userInput').value = "";
+      document.getElementById('result').innerHTML = "";
+    }
+  </script>
+</head>
+<body>
+  <h1>Mini Cricket Game</h1>
+  <p>Enter a number between 1 and 6 and click Play Ball:</p>
+  <input type="text" id="userInput">
+  <button onclick="playBall()">Play Ball</button>
+  <button onclick="resetGame()">Reset Game</button>
+  <div id="result"></div>
+</body>
+</html>
